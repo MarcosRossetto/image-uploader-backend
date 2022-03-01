@@ -23,4 +23,8 @@ public class ImageService {
     return imageRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
   }
 
+  public Image save(Image image) {
+    return imageRepository.save(image);
+  }
+
 }
