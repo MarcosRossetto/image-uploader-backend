@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rossetto.imageuploaderapi.models.Image;
 import com.rossetto.imageuploaderapi.repositories.ImageRepository;
+import com.rossetto.imageuploaderapi.services.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,9 @@ public class ImageService {
   public List<Image> findAll() {
     return imageRepository.findAll();
   }
+
+  public Image findById(Long id) {
+    return imageRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+  }
+
 }
