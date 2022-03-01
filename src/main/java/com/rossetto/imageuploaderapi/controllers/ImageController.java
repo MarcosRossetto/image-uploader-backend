@@ -30,7 +30,7 @@ public class ImageController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Image> findById(@PathVariable Long id) {
+  public ResponseEntity<Image> findById(@PathVariable String id) {
     return new ResponseEntity<>(imageService.findById(id), HttpStatus.OK);
   }
 
@@ -40,12 +40,12 @@ public class ImageController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Image> update(@PathVariable Long id, @RequestBody Image image) {
+  public ResponseEntity<Image> update(@PathVariable String id, @RequestBody Image image) {
     return new ResponseEntity<>(imageService.update(id, image), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
+  public ResponseEntity<Void> delete(@PathVariable String id) {
     imageService.delete(id);
     return ResponseEntity.noContent().build();
   }

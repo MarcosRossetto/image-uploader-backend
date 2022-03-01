@@ -22,7 +22,7 @@ public class ImageService {
     return imageRepository.findAll();
   }
 
-  public Image findById(Long id) {
+  public Image findById(String id) {
     return imageRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
   }
 
@@ -30,7 +30,7 @@ public class ImageService {
     return imageRepository.save(image);
   }
 
-  public Image update(Long id, Image image) {
+  public Image update(String id, Image image) {
     try {
       Image imageUpdate = findById(id);
       updateData(imageUpdate, image);
@@ -40,7 +40,7 @@ public class ImageService {
     }
   }
 
-  public void delete(Long id) {
+  public void delete(String id) {
     try {
       imageRepository.deleteById(id);
     } catch(EmptyResultDataAccessException e) {
