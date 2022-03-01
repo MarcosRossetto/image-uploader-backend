@@ -9,6 +9,7 @@ import com.rossetto.imageuploaderapi.repositories.ImageRepository;
 import com.rossetto.imageuploaderapi.services.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,7 +39,15 @@ public class ImageService {
       throw new NotFoundException(id);
     }
   }
-  
+
+  public void delete(Long id) {
+    try {
+      imageRepository.deleteById(id);
+    } catch(EmptyResultDataAccessException e) {
+      throw new NotFoundException(id);
+    }
+  }
+
   private void updateData(Image imageUpdate, Image image) {
     imageUpdate.setBase64Image(image.getBase64Image());
   }
